@@ -31,23 +31,31 @@
     <table id = "example" class="table table-striped table-bordered" style="width:100%">
       <thead>
       <tr>
-        <td>Kitap_Adı</td>
-        <td>YayınEviAdı</td>
-        <td>Kopya_Sayısı</td>
-        <td>Kopya_Sayısı</td>
+        <td>KopyaKitapNo</td>
+        <td>konumno</td>
+        <td>basımtılı</td>
       </tr>
       </thead>
       <tbody>
-      {% for row in kitaplar %}
+      {% for row in kopyalar %}
       <tr>
-        <td>{{row.kitapadi}}</td>
-        <td>{{row.yayineviadi}}</td>
-        <td>{{row.kopyasayisi}}</td>
+        <td>{{row.kopyakitapno}}</td>
+        <td>{{row.konumno}}</td>
+        <td>{{row.basimyili}}</td>
         <td width="130">
-          <a href="/kopya/{{row.kitapno}}" class="btn btn-secondary btn-sm">Kopya Gör</a>
+            <a href="/oduncalma/{{row.kitapno}}/{{row.kopyakitapno}}" class="btn btn-secondary btn-sm">Ödünç Al</a>
         </td>
       </tr>
       {% endfor %}
+      <form action="/oduncalma/{{pk1}}>/{{pk2}}" method="POST">
+        <label for="tarih">Tealim Alma Tarih giriniz:</label>
+        <input type="date" id="tarih" name="altarih">
+        <label for="tarih">Teslim Verme Tarihi giriniz:</label>
+        <input type="date" id="tarih" name="vertarih">
+        <button type="submit" class="btn btn-primary btn-block">
+            Submit
+        </button>
+      </form>
       </tbody>
     </table>
   </div>
