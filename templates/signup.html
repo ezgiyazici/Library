@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<style>
+    body{
+
+  margin: 0;
+
+  padding: 0;
+
+  font-family: sans-serif;
+
+  background: white;
+
+}
+    .navbar{
+padding: 15px;
+background-color: white;
+display: flex;
+justify-content: space-between;
+        font-family: sans-serif;
+font-size: 15px;
+position: absolute;
+        top: 3px;
+      right: 5px;
+color: #7434db;
+}
+    .nav-item {
+    position: absolute;
+
+      right: 5px;
+        top: 3px;
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 15px;
+    }
+    .nav-link {
+    display: inline-block;
+    }
+    a{
+    text-decoration: none;
+    color: #7434db;
+    }
+
+    @media (max-width: 715px) {
+    .nav-item {
+    flex-direction: column;
+    align-items: center;
+    }
+    .nav-link {
+    margin: 5px 1000px;
+    }
+    }
+
+.box{
+
+  width: 300px;
+
+  padding: 40px;
+
+  position: absolute;
+
+    border: white;
+
+  top: 50%;
+
+  left: 50%;
+
+  transform: translate(-50%,-50%);
+
+  background: #3498db;
+
+  text-align: center;
+
+}
+
+.box h1{
+
+  color: white;
+
+  text-transform: uppercase;
+
+  font-weight: 500;
+
+}
+
+.box input[type = "text"],.box input[type = "password"]{
+
+
+  display: block;
+
+  margin: 20px auto;
+
+  text-align: center;
+
+  border: white;
+
+  padding: 14px 10px;
+
+  width: 200px;
+
+  outline: none;
+
+  color:#455667;
+
+  border-radius: 24px;
+
+  transition: 0.25s;
+
+}
+
+.box input[type = "text"]:focus,.box input[type = "password"]:focus{
+
+  width: 280px;
+
+  border-color: white;
+
+    color:#455667;
+
+}
+
+.box input[type = "submit"]{
+
+
+  display: block;
+
+  margin: 20px auto;
+
+  text-align: center;
+
+  border: white;
+
+  padding: 14px 40px;
+
+  outline: none;
+
+
+  color:#455667;
+  border-radius: 24px;
+
+  transition: 0.25s;
+
+  cursor: pointer;
+
+}
+
+.box input[type = "submit"]:hover{
+
+  background: white;
+
+}
+.div1 {
+
+  height: 120px;
+  width: 150px;
+   position: absolute;
+    left: 15%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.div2 {
+  height: 120px;
+  width: 150px;
+   position: absolute;
+    right: 10%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+</style>
+
+  <head>
+
+
+
+    <meta charset="utf-8">
+
+    <title>َBeauty App</title>
+
+
+  </head>
+
+  <body>
+
+  <div class="div1">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/The_Logo_is_Beauty_App%27s_logo.png" width="200" height="140">
+  </div>
+   <div class="div2">
+       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/The_Logo_is_Beauty_App%27s_logo.png" width="200" height="140">
+   </div>
+   <nav class="navbar">
+   {% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}
+    </div>
+    {% endif %}
+
+        <div class="container">
+
+            <div id="navbarMenuHeroA" class="navbar-menu">
+                <div class="navbar-end">
+                    
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<form class="box" action="/signup/salon" method="post">
+
+
+    {% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}. Go to <a href="/">login page</a>.
+    </div>
+{% endif %}
+{% endwith %}
+
+        <h1>Kayıt Ol</h1>
+
+
+    <input type="text" name="name" placeholder="Kullanıcı Adı">
+
+    <input type="password" name="password" placeholder="Şifre">
+
+    <input type="text" name="semtismi" placeholder="Semt adi">
+
+    <input type="text" name="gstismi" placeholder="Güzellik Salonu Türü">
+
+    <input type="text" name="gsadi" placeholder="Güzellik Salonu Isminiz">
+
+    <input type="submit" name="" value="Kayıt Ol">
+
+
+
+
+</form>
+
+  </body>
+
+</html>
