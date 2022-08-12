@@ -1,12 +1,12 @@
 from xml.sax.saxutils import prepare_input_source
 from flask import Flask
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session,flash
 import config
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 app = Flask(__name__)
 
-
+app.secret_key = "secret123"
 db = create_engine('postgresql://postgres:131799@localhost/Library')
 db.execute("select * from kitap")
 result_set = db.execute("SELECT * FROM kitap")  
@@ -39,10 +39,12 @@ def updateGet(pk1,pk2):
 
 @app.route('/oduncalma/<pk1>/<pk2>',methods=['POST'])
 def odunc(pk1,pk2):
-    result_set = db.execute("SELECT * FROM kitapkopyasi where kitapno=%s and kopyakitapno=%s",pk1,pk2)  
     #return render_template('kitapkopya.html',pk1=pk1,pk2=pk2,kopyalar=result_set)
     altarih=request.form['altarih']
+    vertarih=request.form['vertarih']
     print(altarih)
-    return render_template('kitapkopya.html',pk1=pk1,pk2=pk2,kopyalar=result_set)
+    db.execute("INSERT INTO oduncalma VALUES (1,%s,%s,%s,%s)",pk2,pk1,altarih,vertarih)
+    flash('Giris basarili.')
+    return redirect('/salonprofile')
 
 
