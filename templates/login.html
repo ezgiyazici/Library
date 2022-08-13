@@ -152,25 +152,7 @@ color: #7434db;;
     color:#455667;
 
 }
-.div1 {
 
-  height: 120px;
-  width: 150px;
-   position: absolute;
-    left: 12%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-}
-
-.div2 {
-  height: 120px;
-  width: 150px;
-   position: absolute;
-    right: 10%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
 </style>
 
   <head>
@@ -179,19 +161,14 @@ color: #7434db;;
 
     <meta charset="utf-8">
 
-    <title>َBeauty App</title>
+    <title>Uykusuzlar Kütüphanesi</title>
 
 
   </head>
 
   <body>
 
-  <div class="div1">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/The_Logo_is_Beauty_App%27s_logo.png" width="200" height="140">
-  </div>
-   <div class="div2">
-       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/The_Logo_is_Beauty_App%27s_logo.png" width="200" height="140">
-   </div>
+
    <nav class="navbar">
    {% if messages %}
     <div class="notification is-danger">
@@ -206,16 +183,14 @@ color: #7434db;;
                     <a href="{{ url_for('Index') }}" class="navbar-item">
                         Ana Sayfa
                     </a>
-          
 
 
-                
-                    <a href="{{ url_for('login') }}" class="navbar-item">
-                        Giriş
+
+                    <a href="{{ url_for('signup') }}" class="navbar-item">
+                        Kayıt Ol
                     </a>
 
-                        
-                      
+
                 </div>
             </div>
         </div>

@@ -152,25 +152,7 @@ color: #7434db;
   background: white;
 
 }
-.div1 {
 
-  height: 120px;
-  width: 150px;
-   position: absolute;
-    left: 15%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-}
-
-.div2 {
-  height: 120px;
-  width: 150px;
-   position: absolute;
-    right: 10%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
 
 
 
@@ -182,19 +164,14 @@ color: #7434db;
 
     <meta charset="utf-8">
 
-    <title>َBeauty App</title>
+    <title>Uykusuzlar Kütüphanesi</title>
 
 
   </head>
 
   <body>
 
-  <div class="div1">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/The_Logo_is_Beauty_App%27s_logo.png" width="200" height="140">
-  </div>
-   <div class="div2">
-       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/The_Logo_is_Beauty_App%27s_logo.png" width="200" height="140">
-   </div>
+
    <nav class="navbar">
    {% if messages %}
     <div class="notification is-danger">
@@ -206,14 +183,24 @@ color: #7434db;
 
             <div id="navbarMenuHeroA" class="navbar-menu">
                 <div class="navbar-end">
-                    
+                    <a href="{{ url_for('Index') }}" class="navbar-item">
+                        Ana Sayfa
+                    </a>
+
+                    <a href="{{ url_for('login') }}" class="navbar-item">
+                        Giriş
+                    </a>
+                    <a href="{{ url_for('signup') }}" class="navbar-item">
+                        Kayıt Ol
+                    </a>
+
 
                 </div>
             </div>
         </div>
     </nav>
 
-<form class="box" action="/signup/salon" method="post">
+<form class="box" action="/signup" method="post">
 
 
     {% with messages = get_flashed_messages() %}
@@ -227,15 +214,17 @@ color: #7434db;
         <h1>Kayıt Ol</h1>
 
 
-    <input type="text" name="name" placeholder="Kullanıcı Adı">
+    <input type="text" name="kullaniciAdi" placeholder="Kullanıcı Adı">
 
     <input type="password" name="password" placeholder="Şifre">
 
-    <input type="text" name="semtismi" placeholder="Semt adi">
+    <input type="text" name="uyeAdi" placeholder="Uye adi">
 
-    <input type="text" name="gstismi" placeholder="Güzellik Salonu Türü">
+    <input type="text" name="uyeSoyadi" placeholder="Uye Soyadi">
 
-    <input type="text" name="gsadi" placeholder="Güzellik Salonu Isminiz">
+    <input type="text" name="adres" placeholder="Adres">
+
+    <input type="text" name="telefon" placeholder="Telefon">
 
     <input type="submit" name="" value="Kayıt Ol">
 

@@ -17,7 +17,7 @@
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       {{ message }}
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">×</span>
+        <span aria-hidden="true"></span>
       </button>
     </div>
     {% endfor %}
@@ -43,19 +43,13 @@
         <td>{{row.konumno}}</td>
         <td>{{row.basimyili}}</td>
         <td width="130">
-            <a href="/oduncalma/{{row.kitapno}}/{{row.kopyakitapno}}" class="btn btn-secondary btn-sm">Ödünç Al</a>
+            <a href="/oduncalma/{{pk1}}/{{row.kitapno}}/{{row.kopyakitapno}}" class="btn btn-secondary btn-sm">Ödünç Al</a>
         </td>
+        <td width="130">
+          <a href="/teslimver/{{pk1}}/{{row.kitapno}}/{{row.kopyakitapno}}" class="btn btn-secondary btn-sm">Teslim Ver</a>
+      </td>
       </tr>
       {% endfor %}
-      <form action="/oduncalma/{{pk1}}/{{pk2}}" method="POST">
-        <label for="tarih">Teslim Alma Tarih giriniz:</label>
-        <input type="date" id="tarih" name="altarih">
-        <label for="tarih">Teslim Verme Tarihi giriniz:</label>
-        <input type="date" id="tarih" name="vertarih">
-        <button type="submit" class="btn btn-primary btn-block">
-            Submit
-        </button>
-      </form>
       </tbody>
     </table>
   </div>
