@@ -26,36 +26,30 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-8" title="Kitaplar">
-    <caption>Uye Bilgisi</caption>
+  <div class="col-md-8" title="Ödünç Alınan Kitaplar">
+    <caption>Ödünç Alınan Kitaplar</caption>
     <table id = "example" class="table table-striped table-bordered" style="width:100%">
       <thead>
       <tr>
-        <td>Uye Adı</td>
-        <td>Uye Soyadı</td>
-
+        <td>Kitap Adı</td>
+        <td>Kitap Kopya Numarası</td>
+        <td>Teslim Alma Tarihi</td>
+        <td>Teslim Tarihi</td>
       </tr>
       </thead>
       <tbody>
+      {% for row in kitaplar %}
       <tr>
-        <td>{{kullanıcı.uyeadi}}</td>
-        <td>{{kullanıcı.uyesoyadi}}</td>
-        <td width="130">
-          <a href="/salonprofile/{{kullanıcı.uyeno}}" class="btn btn-secondary btn-sm">Kitaplari Göster</a>
-        </td>
-        <td width="130">
-          <a href="/oduncalinanlar/{{kullanıcı.uyeno}}" class="btn btn-secondary btn-sm">Ödünç Alınanları Göster</a>
-        </td>
-        <td width="130">
-        <form action="/cezaalinanlar/{{kullanıcı.uyeno}}" method="POST">
-        <button type="submit" class="btn btn-secondary btn-sm">
-            Ceza Göster
-        </button>
+        <td>{{row.kitapadi}}</td>
+        <td>{{row.kopyakitapno}}</td>
+        <td>{{row.teslimalmatarihi}}</td>
+        <td>{{row.teslimtarihi}}</td>
 
-      </form>
-</td>
+         <td width="130">
+          <a href="/teslimver/{{pk}}/{{row.kitapno}}/{{row.kopyakitapno}}" class="btn btn-secondary btn-sm">Teslim Ver</a>
+          </td>
       </tr>
-
+      {% endfor %}
       </tbody>
     </table>
   </div>

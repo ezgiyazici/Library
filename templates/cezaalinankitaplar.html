@@ -26,36 +26,24 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-8" title="Kitaplar">
-    <caption>Uye Bilgisi</caption>
+  <div class="col-md-8" title="Ödünç Alınan Kitaplar">
+    <caption>Ceza Alınan Kitaplar</caption>
     <table id = "example" class="table table-striped table-bordered" style="width:100%">
       <thead>
       <tr>
-        <td>Uye Adı</td>
-        <td>Uye Soyadı</td>
+        <td>Ceza Miktari</td>
 
       </tr>
       </thead>
       <tbody>
+      {% for row in kitaplar %}
       <tr>
-        <td>{{kullanıcı.uyeadi}}</td>
-        <td>{{kullanıcı.uyesoyadi}}</td>
-        <td width="130">
-          <a href="/salonprofile/{{kullanıcı.uyeno}}" class="btn btn-secondary btn-sm">Kitaplari Göster</a>
-        </td>
-        <td width="130">
-          <a href="/oduncalinanlar/{{kullanıcı.uyeno}}" class="btn btn-secondary btn-sm">Ödünç Alınanları Göster</a>
-        </td>
-        <td width="130">
-        <form action="/cezaalinanlar/{{kullanıcı.uyeno}}" method="POST">
-        <button type="submit" class="btn btn-secondary btn-sm">
-            Ceza Göster
-        </button>
+        <td>{{row.cezamiktari}}</td>
 
-      </form>
-</td>
+
+
       </tr>
-
+      {% endfor %}
       </tbody>
     </table>
   </div>

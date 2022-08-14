@@ -7,6 +7,8 @@ from flask_login import UserMixin, login_user, login_required, logout_user
 from flask_login import LoginManager
 from flask_login import current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+import _datetime
+import time
 
 app = Flask(__name__)
 
@@ -15,10 +17,7 @@ login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.init_app(app)
 db = create_engine('postgresql://postgres:131799@localhost/Library')
-db.execute("select * from kitap")
-result_set = db.execute("SELECT * FROM kitap")  
-for r in result_set:  
-    print(r)
+
 @app.route('/')
 def Index():
     return render_template('login.html')
@@ -55,7 +54,7 @@ def signup():
 
     db.execute("INSERT INTO uye(uyeadi,uyesoyadi,uyeadresi,uyetelefonu,sifre,kullaniciAdi) VALUES (%s,%s,%s,%s,%s,%s)",uyeAdi,uyeSoyadi,adres,telefon,password,kullaniciAdi)
 
-    return redirect('/salonprofile')
+    return redirect('/login')
 
 @app.route('/signup')
 def signupIlk():
@@ -69,8 +68,38 @@ def load_user(kullaniciadi):
 @app.route('/salonprofile/<pk>')
 def salonprofil(pk):
     result_set = db.execute("SELECT * FROM kitap")
-
     return render_template('salonprofil.html',pk=pk,kitaplar=result_set)
+
+@app.route('/oduncalinanlar/<pk>')
+def oduncalinanlar(pk):
+    result_set = db.execute("SELECT kitap.kitapno,kitapAdi,kopyakitapno,teslimalmatarihi,teslimtarihi FROM kitap,oduncalma where kitap.kitapno=oduncalma.kitapno and uyeno=%s",pk)
+    return render_template('oduncalinankitaplar.html',pk=pk,kitaplar=result_set)
+
+
+@app.route('/cezaalinanlar/<pk>',methods=['POST'])
+def cezaalinanlar(pk):
+
+    today = _datetime.date.today().strftime("%Y-%m-%d")
+    ceza=db.execute("SELECT * FROM uye,ceza where uye.uyeno=ceza.uyeno and ceza.uyeno=%s",pk)
+    count=0
+    for v in ceza: 
+        count+=1
+    if count==0:
+        db.execute("INSERT INTO ceza VALUES(0,%s)",pk)
+    result_set = db.execute("SELECT kitap.kitapno,kitapAdi,kopyakitapno,teslimalmatarihi,teslimtarihi FROM kitap,oduncalma where kitap.kitapno=oduncalma.kitapno and uyeno=%s",pk)
+    ceza=0
+    for v in result_set:
+        for column, value in v.items():
+            if ('{0}'.format(column, value)) == "teslimtarihi":
+                if ('{1}'.format(column, value)) < today:
+                    ceza+=10
+    db.execute("UPDATE ceza SET cezamiktari=%s WHERE uyeno=%s",str(ceza),pk)
+
+
+
+    resultset = db.execute("SELECT * FROM ceza WHERE uyeno=%s", pk)
+
+    return render_template('cezaalinankitaplar.html',pk=pk ,kitaplar=resultset)
 
 @app.route('/kopya/<pk1>/<pk2>')
 def kopyaGor(pk1,pk2):
