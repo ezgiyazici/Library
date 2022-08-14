@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% block title %} Salon Profil Sayfası {% endblock %}
+{% block title %} Kopya Kİtap Profil Sayfası {% endblock %}
 {% block body %}
 <div class="hero-head">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,15 +32,17 @@
       <thead>
       <tr>
         <td>KopyaKitapNo</td>
-        <td>konumno</td>
-        <td>basımtılı</td>
+        <td>Bölüm Adı</td>
+        <td>Bölüm Yeri</td>
+        <td>Basım Yılı</td>
       </tr>
       </thead>
       <tbody>
       {% for row in kopyalar %}
       <tr>
         <td>{{row.kopyakitapno}}</td>
-        <td>{{row.konumno}}</td>
+        <td>{{row.bolumadi}}</td>
+        <td>{{row.bolumadresi}}</td>
         <td>{{row.basimyili}}</td>
         <td width="130">
             <a href="/oduncalma/{{pk1}}/{{row.kitapno}}/{{row.kopyakitapno}}" class="btn btn-secondary btn-sm">Ödünç Al</a>

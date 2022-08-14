@@ -65,10 +65,10 @@ def load_user(kullaniciadi):
     result_set = db.execute("SELECT * FROM uye where kullaniciadi=%s",kullaniciadi)  
     return result_set
 
-@app.route('/salonprofile/<pk>')
-def salonprofil(pk):
-    result_set = db.execute("SELECT * FROM kitap")
-    return render_template('salonprofil.html',pk=pk,kitaplar=result_set)
+@app.route('/kitap/<pk>')
+def kitap(pk):
+    result_set = db.execute("SELECT * FROM kitap,yazar where kitap.yazaradi=yazar.yazaradi AND kitap.yazarsoyadi=yazar.yazarsoyadi")
+    return render_template('kitap.html',pk=pk,kitaplar=result_set)
 
 @app.route('/oduncalinanlar/<pk>')
 def oduncalinanlar(pk):
@@ -103,12 +103,12 @@ def cezaalinanlar(pk):
 
 @app.route('/kopya/<pk1>/<pk2>')
 def kopyaGor(pk1,pk2):
-    result_set = db.execute("SELECT * FROM kitapkopyasi where kitapno=%s",pk2) 
+    result_set = db.execute("SELECT * FROM kitapkopyasi,kitaplikkonumu where kitapno=%s and kitapkopyasi.konumno=kitaplikkonumu.konumno",pk2) 
     return render_template('kitapkopya.html',pk1=pk1,pk2=pk2,kopyalar=result_set)
 
 @app.route('/oduncalma/<pk1>/<pk2>/<pk3>')
 def updateGet(pk1,pk2,pk3):
-    result_set = db.execute("SELECT * FROM kitapkopyasi where kitapno=%s and kopyakitapno=%s",pk2,pk3)  
+    result_set = db.execute("SELECT * FROM kitapkopyasi,kitap where kitapkopyasi.kitapno=%s and kitapkopyasi.kopyakitapno=%s and kitap.kitapno=kitapkopyasi.kitapno",pk2,pk3)  
     #return render_template('kitapkopya.html',pk1=pk1,pk2=pk2,kopyalar=result_set)
     return render_template('oduncalma.html',pk1=pk1,pk2=pk2,pk3=pk3,kopyalar=result_set)
 
@@ -130,7 +130,7 @@ def odunc(pk1,pk2,pk3):
 
 @app.route('/teslimver/<pk1>/<pk2>/<pk3>')
 def teslimet(pk1,pk2,pk3):
-    result_set = db.execute("SELECT * FROM kitapkopyasi where kitapno=%s and kopyakitapno=%s",pk2,pk3)  
+    result_set = db.execute("SELECT * FROM kitapkopyasi,kitap where kitapkopyasi.kitapno=%s and kitapkopyasi.kopyakitapno=%s and kitap.kitapno=kitapkopyasi.kitapno",pk2,pk3)  
     #return render_template('kitapkopya.html',pk1=pk1,pk2=pk2,kopyalar=result_set)
     return render_template('teslimverme.html',pk1=pk1,pk2=pk2,pk3=pk3,kopyalar=result_set)
 

@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% block title %} Salon Profil Sayfası {% endblock %}
+{% block title %} Teslim Verme Sayfası {% endblock %}
 {% block body %}
 <div class="hero-head">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -31,16 +31,16 @@
     <table id = "example" class="table table-striped table-bordered" style="width:100%">
       <thead>
       <tr>
+        <td>Kitap_Adı</td>
         <td>KopyaKitapNo</td>
-        <td>konumno</td>
-        <td>basımtılı</td>
+        <td>Basım Yılı</td>
       </tr>
       </thead>
       <tbody>
       {% for row in kopyalar %}
       <tr>
+        <td>{{row.kitapadi}}</td>
         <td>{{row.kopyakitapno}}</td>
-        <td>{{row.konumno}}</td>
         <td>{{row.basimyili}}</td>
       </tr>
       {% endfor %}
@@ -48,7 +48,7 @@
     </table>
     <form action="/teslimver/{{pk1}}/{{pk2}}/{{pk3}}" method="POST">
         <button type="submit" class="btn btn-primary btn-block">
-            Submit
+            Onayla
         </button>
       </form>
   </div>

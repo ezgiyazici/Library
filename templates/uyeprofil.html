@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% block title %} Salon Profil Sayfası {% endblock %}
+{% block title %} Üye Profil Sayfası {% endblock %}
 {% block body %}
 <div class="hero-head">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -41,7 +41,7 @@
         <td>{{kullanıcı.uyeadi}}</td>
         <td>{{kullanıcı.uyesoyadi}}</td>
         <td width="130">
-          <a href="/salonprofile/{{kullanıcı.uyeno}}" class="btn btn-secondary btn-sm">Kitaplari Göster</a>
+          <a href="/kitap/{{kullanıcı.uyeno}}" class="btn btn-secondary btn-sm">Kitaplari Göster</a>
         </td>
         <td width="130">
           <a href="/oduncalinanlar/{{kullanıcı.uyeno}}" class="btn btn-secondary btn-sm">Ödünç Alınanları Göster</a>

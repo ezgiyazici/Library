@@ -32,6 +32,8 @@
       <thead>
       <tr>
         <td>Kitap_Adı</td>
+        <td>Yazar_Adı</td>
+        <td>Yazar_Soyadı</td>
         <td>YayınEviAdı</td>
         <td>Kopya_Sayısı</td>
         <td>Kopya_Sayısı</td>
@@ -41,6 +43,8 @@
       {% for row in kitaplar %}
       <tr>
         <td>{{row.kitapadi}}</td>
+        <td>{{row.yazaradi}}</td>
+        <td>{{row.yazarsoyadi}}</td>
         <td>{{row.yayineviadi}}</td>
         <td>{{row.kopyasayisi}}</td>
         <td width="130">
