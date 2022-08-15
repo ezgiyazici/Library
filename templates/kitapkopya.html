@@ -8,6 +8,24 @@
          </ul>
     </div>
   </nav>
+  <nav class="navbar">
+    {% if messages %}
+     <div class="notification is-danger">
+         {{ messages[0] }}
+     </div>
+     {% endif %}
+ 
+         <div class="container">
+ 
+             <div id="navbarMenuHeroA" class="navbar-menu">
+                 <div class="navbar-end">
+                     <a href="{{ url_for('uyeprofil') }}" class="navbar-item">
+                         Ana Sayfa
+                     </a>
+                 </div>
+             </div>
+         </div>
+     </nav>
 </div>
 <div class="row">
   <div class="col-md-4">
@@ -27,11 +45,11 @@
 </div>
 <div class="row">
   <div class="col-md-8" title="Kitaplar">
-    <caption>Kitaplar</caption>
+    <caption>Kitap Kopyaları</caption>
     <table id = "example" class="table table-striped table-bordered" style="width:100%">
       <thead>
       <tr>
-        <td>KopyaKitapNo</td>
+        <td>Kopya Kitap Numarası</td>
         <td>Bölüm Adı</td>
         <td>Bölüm Yeri</td>
         <td>Basım Yılı</td>

@@ -22,9 +22,22 @@ db = create_engine('postgresql://postgres:131799@localhost/Library')
 def Index():
     return render_template('login.html')
 
+@app.route('/uyeprofil')
+def uyeprofil():
+        
+    resultset = db.execute("SELECT * FROM uye ORDER BY uyeno DESC LIMIT 1")
+    for r in resultset:  
+        kullanıcı=r
+    
+    return render_template('uyeprofil.html',kullanıcı=kullanıcı)
 @app.route('/login')
 def login():
-    return render_template('login.html')
+        
+    resultset = db.execute("SELECT * FROM uye ORDER BY uyeno DESC LIMIT 1")
+    for r in resultset:  
+        kullanıcı=r
+    
+    return render_template('uyeprofil.html',kullanıcı=kullanıcı)
 @app.route('/login', methods=['POST'])
 def login_post():
     kullaniciadi = request.form.get('kullaniciadi')
